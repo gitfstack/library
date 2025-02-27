@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial";
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+}
+
+.biblioteque {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container {
+    width: 100%;
+}
+
+.separation {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    margin: 380px 0;
+}
+
+
+
+.coin1, .coin2 {
+    width: 120px;
+    height: 100%;
+    background-color: brown;
+}
+
+.add {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.add button {
+    width: 150px;
+    height: 50px;
+    background-color: bisque;
+    border: 1px solid gray;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.add-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(18, 22, 13, 0.76);
+    z-index: 999;
+    display: none;
+}
+
+form {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin : 250px auto;
+    padding: 40px;
+    position: relative;
+}
+
+input {
+    margin: 5px 0;
+    height: 40px;
+    padding-left: 5px;
+    border: 1px solid gray;
+    outline: none;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+}
+
+form > span {
+    position: relative;
+    top: -20px;
+    display: flex;
+    justify-content: flex-end;
+    color:black;
+    cursor: pointer;
+}
+
+.book-decoration {
+    min-width: 250px;
+    max-width: 250px;
+    padding: 20px;
+    height: 250px;
+    background-color: rgb(145, 90, 90);
+    border-radius: 10px;
+    border: 5px solid rgb(252, 215, 161);
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-display {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0 20px;
+}
+
+.book-decoration h1, h2, h3, p {
+    text-transform: uppercase;
+}
+
+.book-decoration h1 {
+    font-weight: 200;
+    font-size: 1.5rem;
+}
+
+.book-decoration h2 {
+    
+}
+.book-decoration p:nth-child(2), .book-decoration p:nth-child(4) {
+    margin: 10px 0;
+}
+
+.book-decoration button {
+    width: 100px;
+    height: 30px;
+    background-color: brown;
+    border-radius: 100px;
+    border: 1px solid black;
+    cursor: pointer;
+    outline: none;
+}
+
+.question-read {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notread {
+    background-color: rgb(197, 62, 62);
+    padding: 4px;
+    width: 100px;
+    border-radius: 100px;
+}
+
+.read {
+    background-color: rgb(81, 121, 81);
+    padding: 4px;
+    width: 100px;
+    border-radius: 100px;
+}
