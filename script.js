@@ -10,35 +10,30 @@ const bookDisplay = document.querySelector(".book-display");
 
 
 
-let arrayBook = []
-let readTrue = true;
-let readMessage = "not read"
-let nbrLivres = 0;
-let instance = null;
+let arrayBook = [];
 
-read.addEventListener("input", () => {
-    if(readTrue == false) {
-        readMessage = "not read"
-        readTrue = true;
-    } else {
-        readMessage = "read"
-        readTrue = false;
+class Book {
+
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
     }
-})
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-
+    readUpdate() {
+        return this.read = this.read == "not read" ? "read" : "not read";
+    }
 }
 
 function addBookLibrary() {
-    arrayBook.push(new Book(inputTitle.value, inputAuthor.value, inputPages.value, readMessage))
-    console.log(arrayBook);
     
-    
+    let readTrue = read.checked ? "read" : "not read";
+    let bookInstance = new Book(inputTitle.value, inputAuthor.value, inputPages.value, readTrue);
+    arrayBook.push(bookInstance);
+    addBookPages(bookInstance, arrayBook.length - 1);
+    addContainerDisplay.style.display = "none";
+
 }
 
 function addPage() {
@@ -57,71 +52,51 @@ function sendInput() {
     submitBook.addEventListener("click", (e) => {
         e.preventDefault()
         addBookLibrary()
-        addContainerDisplay.style.display = "none"
-        addBookPages()
     })
     
 }
 
-function addBookPages() {
-    bookDisplay.innerHTML = ""
-    for(let i=0; i<arrayBook.length; i++) {
-        let divBook = document.createElement("div");
+function addBookPages(book, index) {
+    const divElement = document.createElement("div");
+    divElement.id = `book-${index}`
 
-        bookDisplay.appendChild(divBook);
-        divBook.id = `book-id${i}`;
-        divBook.classList.add("book-decoration");
+    divElement.classList.add("book-decoration")
 
-        divBook.innerHTML = `
-        <h1>${arrayBook[i].title}</h1>
-        <p>${arrayBook[i].author}</p>
-        <p>${arrayBook[i].pages}</p>
-        <p id="readP${i}" value="${i}">${arrayBook[i].read}</p>
-        <button value="${i}">remove</button>
-        `
+    const h1 = document.createElement("h1")
+    h1.textContent = book.title
 
-        let buttonRemove = document.querySelector(`#readP${i}`)
+    const p1 = document.createElement("p")
+    p1.textContent = book.author
 
-        if(buttonRemove.innerHTML == "not read") {
-            buttonRemove.classList.add("notread")
-            
-        } else {
-            buttonRemove.classList.add("read")
-            
-        }
+    const p2 = document.createElement("p")
+    p2.textContent = book.author
 
-        buttonRemove.addEventListener("click", (e) => {
+    const p3 = document.createElement("p")
+    p3.textContent = book.read
 
-            
 
-            if(e.target.innerHTML == "not read") {
-                arrayBook[i].read = "read"
-                e.target.textContent = "read"
-                buttonRemove.classList.add("read")
-                buttonRemove.classList.remove("notread")
-                
-            } else {
-                arrayBook[i].read = "not read"
-                e.target.textContent = "not read"
-                buttonRemove.classList.add("notread")
-                buttonRemove.classList.remove("read")
-                
-            }
-        })
-
-        removeBook(i)
-    }
-}
-
-function removeBook(i) {
-    let buttonRemove = document.querySelector(`#book-id${i} button`)
-
-    buttonRemove.addEventListener("click", (e) => {
-        let books1 = document.querySelector(`#book-id${e.target.value}`)
-        arrayBook.splice(i, 1)
-        books1.remove()
-        addBookPages()
+    const buttonRemove = document.createElement("button")
+    buttonRemove.textContent = "remove"
+    
+    buttonRemove.addEventListener("click", () => {
+        divElement.remove()
+        arrayBook.splice(index, 1)
     })
+
+    p3.addEventListener("click", () => {
+        if(book.readUpdate() == "read") {
+            p3.textContent = "not read"
+            p3.classList.add("notread")
+            p3.classList.remove("read")
+        } else {
+            p3.textContent = "read"
+            p3.classList.add("read")
+            p3.classList.remove("notread")
+        }
+    })
+
+    divElement.append(h1, p1, p2, p3, buttonRemove);
+    bookDisplay.appendChild(divElement);
 }
 
 
