@@ -7,10 +7,39 @@ const submitBook = document.querySelector("input[type='submit']");
 const closeDisplay = document.getElementById("close");
 const addContainerDisplay = document.querySelector(".add-container");
 const bookDisplay = document.querySelector(".book-display");
+const bookForm = document.querySelector(".add-container form");
 
 
 
 let arrayBook = [];
+let y = null;
+let x = null;
+let mouseClick = false;
+
+document.onmousedown = () => {
+    mouseClick = true;
+}
+
+document.onmouseup = () => {
+mouseClick = false;
+}
+
+document.addEventListener("mousemove", (e) => {
+    y = e.clientY
+    x = e.clientX
+    
+})
+
+bookForm.addEventListener("mousemove", (e) => {
+    if(mouseClick==true) {
+        bookForm.style.top = y + "px";
+        bookForm.style.left = x + "px";
+        
+    }
+    
+    
+})
+
 
 class Book {
 
@@ -69,7 +98,7 @@ function addBookPages(book, index) {
     p1.textContent = book.author
 
     const p2 = document.createElement("p")
-    p2.textContent = book.author
+    p2.textContent = book.pages
 
     const p3 = document.createElement("p")
     p3.textContent = book.read
@@ -79,20 +108,15 @@ function addBookPages(book, index) {
     buttonRemove.textContent = "remove"
     
     buttonRemove.addEventListener("click", () => {
-        divElement.remove()
+        bookDisplay.innerHTML = ""
         arrayBook.splice(index, 1)
+        arrayBook.forEach((book, index) => addBookPages(book, index))
     })
 
     p3.addEventListener("click", () => {
-        if(book.readUpdate() == "read") {
-            p3.textContent = "not read"
-            p3.classList.add("notread")
-            p3.classList.remove("read")
-        } else {
-            p3.textContent = "read"
-            p3.classList.add("read")
-            p3.classList.remove("notread")
-        }
+        p3.textContent = book.readUpdate()
+        p3.classList.toggle("read", book.read == "read")
+        p3.classList.toggle("notread", book.read == "not read")
     })
 
     divElement.append(h1, p1, p2, p3, buttonRemove);
