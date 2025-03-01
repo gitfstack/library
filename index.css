@@ -17,18 +17,9 @@ body {
     justify-content: space-between;
 }
 
-.container {
+.container-header {
     width: 100%;
 }
-
-.separation {
-    width: 100%;
-    height: 2px;
-    background-color: black;
-    margin: 380px 0;
-}
-
-
 
 .coin1, .coin2 {
     width: 120px;
@@ -68,23 +59,50 @@ form {
     width: 300px;
     padding: 40px;
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    transform: translate(-50%);
+    cursor:grab;
+    border: 3px solid rgb(54, 54, 54);
+    border-radius: 10px;
 }
 
-input {
+input[type="text"], input[type="submit"]{
     width: 100%;
     margin: 5px 0;
     height: 40px;
-    padding-left: 5px;
     border: 1px solid gray;
     outline: none;
 }
 
+input[type="text"] {
+    padding-left: 10px;
+    border: 1px solid rgb(194, 157, 109);
+    border-radius: 5px;
+}
+
+.question-read {
+    width: 100%;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.question-read label {
+    margin-right: 10px;
+}
+
+#checkboxtrue {
+    width: 20px;
+    height: 20px;
+}
+
 input[type="submit"] {
     cursor: pointer;
+    border-radius: 40px;
+    border-radius: 2px solid gray;
+    background-color: rgb(255, 213, 161);
 }
 
 form > span {
@@ -112,7 +130,7 @@ form > span {
     align-items: center;
 }
 
-.book-display {
+.display-container {
     text-align: center;
     display: flex;
     justify-content: space-around;
@@ -122,6 +140,7 @@ form > span {
 
 .book-decoration h1, h2, h3, p {
     text-transform: uppercase;
+    margin: 10px 0;
 }
 
 .book-decoration h1 {
@@ -141,12 +160,6 @@ form > span {
     border: 1px solid black;
     cursor: pointer;
     outline: none;
-}
-
-.question-read {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .notread {

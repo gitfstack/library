@@ -6,38 +6,44 @@ const read = document.getElementById("checkboxtrue");
 const submitBook = document.querySelector("input[type='submit']");
 const closeDisplay = document.getElementById("close");
 const addContainerDisplay = document.querySelector(".add-container");
-const bookDisplay = document.querySelector(".book-display");
+const bookDisplay = document.querySelector(".display-container");
 const bookForm = document.querySelector(".add-container form");
 
 
 
 let arrayBook = [];
-let y = null;
-let x = null;
+let y = 0;
+let x = 0;
 let mouseClick = false;
 
-document.onmousedown = () => {
-    mouseClick = true;
-}
+let board1 = [[]]
+
+console.log(board1[0].push(Cell()));
+
 
 document.onmouseup = () => {
 mouseClick = false;
 }
 
-document.addEventListener("mousemove", (e) => {
-    y = e.clientY
-    x = e.clientX
+bookForm.addEventListener("mousedown", (e) => {
+    mouseClick = true
+    y = e.clientY - bookForm.getBoundingClientRect().top
+    x = e.clientX - bookForm.getBoundingClientRect().left
+    console.log(coucou);
+    
     
 })
 
-bookForm.addEventListener("mousemove", (e) => {
+
+
+document.addEventListener("mousemove", (e) => {
     if(mouseClick==true) {
-        bookForm.style.top = y + "px";
-        bookForm.style.left = x + "px";
-        
+        bookForm.style.transform = `translate(0, 0)`;
+        bookForm.style.top = `${e.clientY - y}px`;
+        bookForm.style.left = `${e.clientX - x}px`;
+        console.log(x);
+        console.log(e.clientX);
     }
-    
-    
 })
 
 
